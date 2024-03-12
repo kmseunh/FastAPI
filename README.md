@@ -14,7 +14,7 @@
 
 ## Logs
 
-2024.03.12
+2024.03.11
 > **pyenv** 및 **virtualenv** 환경설정, **FastAPI** 기본
 >
 > [FastAPI Basic](https://github.com/kmseunh/FastAPI/blob/main/study-logs/2024-03-11-fastapi.md)
