@@ -25,3 +25,10 @@
 > **Path** 매개변수, **Query** 매개변수
 >
 > [Path Parameters, Query Parameters](https://github.com/kmseunh/FastAPI/blob/main/study-logs/2024-03-12-fastapi.md)
+
+<br>
+
+2023.03.13
+> **Request Body**, 매개변수 검증
+>
+> [Request Body, Parameters Validation](https://github.com/kmseunh/FastAPI/blob/main/study-logs/2024-03-13-fastapi.md)
