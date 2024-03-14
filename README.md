@@ -32,3 +32,10 @@
 > **Request Body**, 매개변수 검증
 >
 > [Request Body, Parameters Validation](https://github.com/kmseunh/FastAPI/blob/main/study-logs/2024-03-13-fastapi.md)
+
+<br>
+
+2023.03.14
+> 본문 - **다중** 매개변수, **필드**, **중첩** 모델
+>
+> [Body - Multiple Parameters, Fields, Nested Models](https://github.com/kmseunh/FastAPI/blob/main/study-logs/2024-03-14-fastapi.md)
