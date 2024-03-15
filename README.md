@@ -46,3 +46,10 @@
 > **쿠키** & **헤더** 매개변수, **응답** 모델
 >
 > [Cookie & Header Parameters, Response Model](https://github.com/kmseunh/FastAPI/blob/main/study-logs/2024-03-15-fastapi.md)
+
+<br>
+
+2023.03.16
+> **에러** 처리, **경로** 작동 설정, 본문 **업데이트**
+>
+> [Handling Errors, Path Operation Configuration, Body Updates](https://github.com/kmseunh/FastAPI/blob/main/study-logs/2024-03-16-fastapi.md)
