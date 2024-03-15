@@ -39,3 +39,10 @@
 > 본문 - **다중** 매개변수, **필드**, **중첩** 모델
 >
 > [Body - Multiple Parameters, Fields, Nested Models](https://github.com/kmseunh/FastAPI/blob/main/study-logs/2024-03-14-fastapi.md)
+
+<br>
+
+2023.03.15
+> **쿠키** & **헤더** 매개변수, **응답** 모델
+>
+> [Cookie & Header Parameters, Response Model](https://github.com/kmseunh/FastAPI/blob/main/study-logs/2024-03-15-fastapi.md)
