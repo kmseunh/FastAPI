@@ -53,3 +53,10 @@
 > **에러** 처리, **경로** 작동 설정, 본문 **업데이트**
 >
 > [Handling Errors, Path Operation Configuration, Body Updates](https://github.com/kmseunh/FastAPI/blob/main/study-logs/2024-03-16-fastapi.md)
+
+<br>
+
+2023.03.17
+> FastAPI 종속성
+>
+> [FastAPI's Dependencies](https://github.com/kmseunh/FastAPI/blob/main/study-logs/2024-03-17-fastapi.md)
