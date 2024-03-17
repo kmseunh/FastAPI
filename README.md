@@ -57,6 +57,6 @@
 <br>
 
 2023.03.17
-> FastAPI 종속성
+> FastAPI 의존성
 >
 > [FastAPI's Dependencies](https://github.com/kmseunh/FastAPI/blob/main/study-logs/2024-03-17-fastapi.md)
