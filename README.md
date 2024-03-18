@@ -60,3 +60,10 @@
 > FastAPI 의존성
 >
 > [FastAPI's Dependencies](https://github.com/kmseunh/FastAPI/blob/main/study-logs/2024-03-17-fastapi.md)
+
+<br>
+
+2023.03.17
+> FastAPI 의존성
+>
+> [PostgreSQL DB integration](https://github.com/kmseunh/FastAPI/blob/main/study-logs/2024-03-18-fastapi.md)
