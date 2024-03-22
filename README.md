@@ -67,3 +67,10 @@
 > PostgreSQL **DB** 연동 및 **테이블** 생성
 >
 > [PostgreSQL DB Integration and Table Creation](https://github.com/kmseunh/FastAPI/blob/main/study-logs/2024-03-18-fastapi.md)
+
+<br>
+
+2023.03.22
+> 게시판 클론코딩 1
+>
+> [BBS Clone Coding 1](https://github.com/kmseunh/FastAPI/blob/main/study-logs/2024-03-22-fastapi.md)
