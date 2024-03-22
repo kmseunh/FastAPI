@@ -73,6 +73,6 @@
 2023.03.22
 > 게시판 클론코딩 1
 >
-> Question List **API** 생성, 의존성 주입, **Schema**
+> Question List **API** 생성, 의존성 주입, **Schema**, **CRUD**
 >
 > [BBS Clone Coding 1](https://github.com/kmseunh/FastAPI/blob/main/study-logs/2024-03-22-fastapi.md)
