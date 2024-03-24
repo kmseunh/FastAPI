@@ -76,3 +76,12 @@
 > Question List **API** 생성, 의존성 주입, **Schema**, **CRUD**
 >
 > [BBS Clone Coding 1](https://github.com/kmseunh/FastAPI/blob/main/study-logs/2024-03-22-fastapi.md)
+
+<br>
+
+2023.03.24
+> 게시판 클론코딩 2
+>
+> 질문 상세 **API** 생성, 답변 등록 `API` 생성
+>
+> [BBS Clone Coding 2](https://github.com/kmseunh/FastAPI/blob/main/study-logs/2024-03-24-fastapi.md)
