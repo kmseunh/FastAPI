@@ -82,6 +82,6 @@
 2023.03.24
 > 게시판 클론코딩 2
 >
-> 질문 상세 **API** 생성, 답변 등록 `API` 생성
+> 질문 상세 **API** 생성, 답변 등록 **API** 생성
 >
 > [BBS Clone Coding 2](https://github.com/kmseunh/FastAPI/blob/main/study-logs/2024-03-24-fastapi.md)
