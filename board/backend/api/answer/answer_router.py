@@ -1,4 +1,5 @@
 from fastapi import APIRouter, Depends, HTTPException
+from sqlalchemy import text
 from sqlalchemy.orm import Session
 from starlette import status
 
@@ -23,3 +24,25 @@ def answer_create(
         raise HTTPException(status_code=404, detail="Question not found")
 
     create_answer(db, question=question, answer_create=_answer_create)
+
+
+# @router.post("/create/{question_id}", status_code=status.HTTP_204_NO_CONTENT)
+# def answer_create(
+#     question_id: int,
+#     _answer_create: schema.AnswerCreate,
+#     db: Session = Depends(get_db),
+# ):
+
+#     # create answer
+#     question = db.execute(
+#         text("SELECT * FROM question WHERE id = ?"), (question_id,)
+#     ).fetchone()
+
+#     if not question:
+#         raise HTTPException(status_code=404, detail="Question not found")
+
+#     db.execute(
+#         text("INSERT INTO answer (text, question_id) VALUES (?, ?)"),
+#         (_answer_create.text, question_id),
+#     )
+#     db.commit()
