@@ -37,7 +37,7 @@ const fastapi = async (
             failureCallback?.(data);
         }
     } catch (error) {
-        alert(JSON.stringify(error));
+        console.log(error);
     }
 };
 
