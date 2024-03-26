@@ -36,7 +36,6 @@ const fastapi = async (
 
         const response = await fetch(endpoint, options);
         const data = await response.json();
-        console.log(data);
 
         if (response.ok || response.status === 204) {
             successCallback?.(data);
