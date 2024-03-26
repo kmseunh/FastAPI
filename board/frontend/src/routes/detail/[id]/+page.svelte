@@ -1,13 +1,15 @@
 <script lang="ts">
     import fastapi from '$lib/api';
+    import { goto } from '$app/navigation';
     import type { PageData } from './$types';
 
     export let data: PageData;
 
     let question_id: number;
-    let answers: Array<{ content: string }>;
+    let answers: Array<{ content: string; create_date: string }>;
     let content: string = '';
     let errMessage: string = '';
+    let answerCount = data.answers.length;
 
     // 페이지 데이터가 변경될 때마다 해당 데이터를 업데이트합니다.
     $: {
@@ -34,6 +36,11 @@
             // 에러 처리를 추가할 수 있습니다.
         }
     };
+
+    const formatDate = (dateString: string): string => {
+        const date = new Date(dateString);
+        return date.toLocaleString();
+    };
 </script>
 
 <div class="max-w-2xl mx-auto mt-8">
@@ -43,11 +50,20 @@
     <div class="mb-4 p-4 border rounded-lg shadow-sm bg-white">
         {data.content}
     </div>
-    <h2 class="text-2xl font-bold mb-4">답변</h2>
+    <button
+        class="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300"
+        on:click={() => goto('/')}>목록으로</button
+    >
+    <h2 class="text-2xl font-bold mb-4 mt-6">
+        {answerCount}개의 답변이 있습니다.
+    </h2>
     <ul>
         {#each answers as answer}
             <li class="mb-4 p-4 border rounded-lg shadow-sm bg-white">
                 {answer.content}
+                <p class="text-sm text-gray-500">
+                    {formatDate(answer.create_date)}
+                </p>
             </li>
         {/each}
     </ul>
