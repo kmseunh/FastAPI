@@ -11,9 +11,15 @@ const fastapi = async (
 
         if (operation.toUpperCase() === 'GET') {
             // 만약 params.id가 존재한다면, endpoint에 파라미터를 추가합니다.
+            console.log(params);
+
             if (params.id) {
                 endpoint += `/${params.id}`;
                 delete params.id; // id를 endpoint에 추가했으므로 params에서 삭제합니다.
+            }
+
+            if (params.page) {
+                endpoint += `?page=${params.page}`;
             }
         }
         const options: RequestInit = {
@@ -26,9 +32,11 @@ const fastapi = async (
                     ? JSON.stringify(params)
                     : undefined,
         };
+        console.log(endpoint);
 
         const response = await fetch(endpoint, options);
         const data = await response.json();
+        console.log(data);
 
         if (response.ok || response.status === 204) {
             successCallback?.(data);
