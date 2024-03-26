@@ -1,8 +1,10 @@
 <script lang="ts">
     import '../app.css';
     import { goto } from '$app/navigation';
+    import { currentPage } from '../lib/store.js';
 
     const navigateToPage = (url: string) => {
+        currentPage.set(0);
         goto(url);
     };
 </script>
@@ -11,16 +13,6 @@
     <button class="text-lg font-semibold" on:click={() => navigateToPage('/')}>
         SHB
     </button>
-    <div class="flex space-x-4">
-        <button
-            class="hover:text-gray-300"
-            on:click={() => navigateToPage('/user-login')}>로그인</button
-        >
-        <button
-            class="hover:text-gray-300"
-            on:click={() => navigateToPage('/user-create')}>회원가입</button
-        >
-    </div>
 </div>
 
 <slot />
