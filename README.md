@@ -85,3 +85,10 @@
 > 질문 상세 **API** 생성, 답변 등록 **API** 생성, 질문 등록 **API** 생성
 >
 > [BBS Clone Coding 2](https://github.com/kmseunh/FastAPI/blob/main/study-logs/2024-03-24-fastapi.md)
+
+<br>
+
+2023.03.26
+> CRUD API 구축 및 DB와 연결
+>
+> [Build CRUD API with DB](https://github.com/kmseunh/FastAPI/blob/main/study-logs/2024-03-26-fastapi.md)
