@@ -4,25 +4,25 @@ from typing import List
 from pydantic import BaseModel, field_validator
 
 
+def validate_not_empty(value):
+    if not value or not value.strip():
+        raise ValueError("빈 값은 허용되지 않습니다.")
+    return value
+
+
 class AnswerCreate(BaseModel):
     content: str
 
-    @field_validator("content")
-    def not_empty(cls, v):
-        if not v or not v.strip():
-            raise ValueError("빈 값은 허용되지 않습니다.")
-        return v
+    _validate_content = field_validator("content")(validate_not_empty)
 
 
 class QuestionCreate(BaseModel):
     subject: str
     content: str
 
-    @field_validator("subject", "content")
-    def not_empty(cls, v):
-        if not v or not v.strip():
-            raise ValueError("빈 값은 허용되지 않습니다.")
-        return v
+    _validate_subject_content = field_validator("subject", "content")(
+        validate_not_empty
+    )
 
 
 class Answer(BaseModel):
@@ -36,7 +36,7 @@ class Question(BaseModel):
     subject: str
     content: str
     create_date: datetime
-    answers: List[Answer] = []  # 리스트 형식을 직접 가져옵니다.
+    answers: List[Answer] = []
 
     class Config:
         from_attributes = True
@@ -44,4 +44,4 @@ class Question(BaseModel):
 
 class QuestionList(BaseModel):
     total: int = 0
-    question_list: list[Question] = []
+    question_list: List[Question] = []
