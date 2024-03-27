@@ -1,0 +1,10 @@
+__pycache__
+
+# pyenv
+.python-version
+
+# Environments
+.env
+
+# macOs
+.DS_Store
