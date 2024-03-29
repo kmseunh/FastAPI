@@ -1,8 +1,9 @@
 from fastapi import FastAPI
 
+from api import auth, some_resource
+
 app = FastAPI()
 
 
-@app.get("/")
-def main():
-    return {"hello": 1}
+app.include_router(auth.router)
+app.include_router(some_resource.router)
