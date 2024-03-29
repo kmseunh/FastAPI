@@ -21,7 +21,7 @@ class User(Base):
 class Sessions(Base):
     __tablename__ = "sessions"
 
-    session_id = Column(String, primary_key=True, default=str(uuid.uuid4))
+    session_id = Column(String, primary_key=True, default=lambda: str(uuid.uuid4()))
     user_id = Column(Integer, ForeignKey("users.user_id"))
     create_time = Column(DateTime, default=func.now())
     expire_time = Column(DateTime)
