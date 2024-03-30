@@ -5,8 +5,14 @@ from pydantic import BaseModel
 
 class UserCreate(BaseModel):
     username: str
-    email: str
     password: str
+    email: str
+
+
+class UserOut(BaseModel):
+    user_id: int
+    username: str
+    email: str
 
 
 class User(UserCreate):
