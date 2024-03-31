@@ -31,9 +31,16 @@ def authenticate_user(
     return user
 
 
+def delete_session(session_id: str, db: Session = Depends(get_db)):
+    db.query(Sessions).filter(Sessions.session_id == session_id).delete()
+    db.commit()
+
+
 def get_user_by_session(session_id: str, db: Session = Depends(get_db)) -> User:
     session = db.query(Sessions).filter(Sessions.session_id == session_id).first()
     if not session or session.expire_time < datetime.now():
+        if session:
+            delete_session(session)
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Session expired or not found",
