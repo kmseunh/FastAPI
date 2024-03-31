@@ -1,7 +1,7 @@
 <script lang="ts">
     import { goto } from '$app/navigation';
     import Header from '$lib/components/Header.svelte';
-    import { updateAuth } from '$lib/stores/auth';
+    import { cookieStore, getCookie } from '$lib/stores/auth';
     import axios from 'axios';
 
     let username: string = '';
@@ -21,9 +21,7 @@
             const res = await axios.post('/api/login', formData);
             console.log(formData);
             if (res.status === 200) {
-                const sessionId = res.data.session_id;
-                updateAuth(sessionId);
-                alert('로그인 성공');
+                cookieStore.set(getCookie());
                 navigateTo('/');
             }
         } catch (error) {
