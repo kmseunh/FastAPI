@@ -99,3 +99,10 @@
 > **Session** 기반 로그인
 >
 > [Session-Based Login](https://github.com/kmseunh/FastAPI/blob/main/study-logs/2024-03-29-fastapi.md)
+
+<br>
+
+2023.03.31
+> **Cookie** 기반 로그인
+>
+> [Cookie-Based Login](https://github.com/kmseunh/FastAPI/blob/main/study-logs/2024-03-31-fastapi.md)
