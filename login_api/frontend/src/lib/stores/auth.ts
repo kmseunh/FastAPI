@@ -1,57 +1,27 @@
-import { writable, type Writable } from 'svelte/store';
-import axios, { type AxiosResponse } from 'axios';
+import { writable } from 'svelte/store';
+import axios from 'axios';
 
-const getSessionId = (): string | null => {
-    return typeof window !== 'undefined'
-        ? localStorage.getItem('sessionId')
-        : null;
+export const getCookie = (): string | null => {
+    return typeof window !== 'undefined' ? document.cookie : null;
 };
 
-const setSessionId = (sessionId: string): void => {
-    if (typeof window !== 'undefined') {
-        localStorage.setItem('sessionId', sessionId);
-    }
-};
+export const cookieStore = writable<string | null>(getCookie());
 
-export const deleteSessionId = () => {
-    if (typeof window !== 'undefined') {
-        localStorage.removeItem('sessionId');
-    }
-};
-
-interface AuthStore {
-    sessionId: string | null;
-}
-
-const initialSessionId = getSessionId();
-
-export const auth: Writable<AuthStore> = writable({
-    sessionId: initialSessionId,
+cookieStore.subscribe((value) => {
+    console.log('Cookie updated:', value);
 });
-
-export const updateAuth = (sessionId: string) => {
-    setSessionId(sessionId);
-    auth.update((value) => ({ ...value, sessionId }));
-};
-
-export const deleteSession = (): void => {
-    deleteSessionId();
-    auth.update((value) => ({ ...value, sessionId: null }));
-};
 
 export const fetchProtectedResource = async (): Promise<void> => {
     try {
-        const sessionId = getSessionId();
-        if (!sessionId) {
-            throw new Error('Session ID not found');
+        const cookie = getCookie();
+        if (!cookie) {
+            throw new Error('Cookie not found');
         }
-        const headers = { Authorization: `Bearer ${sessionId}` };
-        const response: AxiosResponse = await axios.get(
-            '/api/protected_resource',
-            {
-                headers,
-            }
-        );
+        const response = await axios.get('/api/protected_resource', {
+            headers: {
+                Cookie: `session_id=${cookie}`,
+            },
+        });
         console.log(response.data);
     } catch (error) {
         console.error('Error occurred:', error);
