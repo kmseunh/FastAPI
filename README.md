@@ -106,3 +106,10 @@
 > **Cookie** 기반 로그인
 >
 > [Cookie-Based Login](https://github.com/kmseunh/FastAPI/blob/main/study-logs/2024-03-31-fastapi.md)
+
+<br>
+
+2023.04.01
+> **JWT** 기반 로그인
+>
+> [JWT-Based Login](https://github.com/kmseunh/FastAPI/blob/main/study-logs/2024-04-01-fastapi.md)
