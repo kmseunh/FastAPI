@@ -110,6 +110,6 @@
 <br>
 
 2023.04.01
-> **JWT** 기반 로그인
+> **OAuth 2.0**를 사용한 **사용자 인증**
 >
-> [JWT-Based Login](https://github.com/kmseunh/FastAPI/blob/main/study-logs/2024-04-01-fastapi.md)
+> [User Authenticate](https://github.com/kmseunh/FastAPI/blob/main/study-logs/2024-04-01-fastapi.md)
