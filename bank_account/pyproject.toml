@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "bank-account"
+version = "0.1.0"
+description = ""
+authors = ["kmseunh <tmdgus8779@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+fastapi = "^0.110.1"
+uvicorn = "^0.29.0"
+alembic = "^1.13.1"
+psycopg2-binary = "^2.9.9"
+pydantic-settings = "^2.2.1"
+pydantic = "^2.6.4"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
