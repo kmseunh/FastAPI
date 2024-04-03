@@ -113,3 +113,10 @@
 > **OAuth 2.0**를 사용한 **사용자 인증**
 >
 > [User Authenticate](https://github.com/kmseunh/FastAPI/blob/main/study-logs/2024-04-01-fastapi.md)
+
+<br>
+
+2023.04.03
+> **트랜잭션 처리**를 위한 입출금 프로젝트
+>
+> [Deposit and Withdrawal Project](https://github.com/kmseunh/FastAPI/blob/main/study-logs/2024-04-03-fastapi.md)
