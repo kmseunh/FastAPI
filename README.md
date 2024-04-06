@@ -120,3 +120,12 @@
 > **트랜잭션 처리**를 위한 입출금 프로젝트
 >
 > [Deposit and Withdrawal Project](https://github.com/kmseunh/FastAPI/blob/main/study-logs/2024-04-03-fastapi.md)
+
+<br>
+
+2023.04.05
+> Instagram Backend 클론코딩 1
+>
+> **회원 가입** 및 **로그인(Auth)** 함수 및 라우터 생성
+>
+> [Instagram Backend Clone Coding 1](https://github.com/kmseunh/FastAPI/blob/main/study-logs/2024-04-05-fastapi.md)
