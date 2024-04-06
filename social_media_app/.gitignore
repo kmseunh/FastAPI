@@ -1,0 +1,13 @@
+# Byte-compiled / optimized / DLL files
+__pycache__
+
+# pyenv
+.python-version
+
+# poetry
+poetry.lock
+
+# Environments
+.env
+
+.pytest_cache
