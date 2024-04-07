@@ -13,6 +13,12 @@ from app.post.schemas import Post as PostSchema
 from app.post.schemas import PostCreate
 
 
+async def get_posts_by_username(
+    username: str, db: Session = Depends(get_db)
+) -> List[Post]:
+    return db.query(Post).filter(Post.author.has(username=username)).all()
+
+
 async def create_hashtags_svc(post: Post, db: Session = Depends(get_db)):
     regex = r"#\w+"
     matches = re.findall(regex, post.content)
