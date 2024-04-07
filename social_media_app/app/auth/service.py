@@ -28,7 +28,6 @@ async def existing_user(
     username: str, email: str, db: Session = Depends(get_db)
 ) -> bool:
     db_username = db.query(User).filter(User.username == username).first()
-    print(db_username)
     db_email = db.query(User).filter(User.email == email).first()
 
     if db_username or db_email:
@@ -49,14 +48,13 @@ async def create_access_token(user: UserSchema) -> str:
 async def get_current_user(
     token: str = Depends(oauth2_bearer), db: Session = Depends(get_db)
 ) -> User:
+    print(token)
     try:
         payload = jwt.decode(token, settings.SECRET_KEY, algorithms=settings.ALGORITHM)
         username: str = payload.get("sub")
         id: str = payload.get("id")
         expires_timestamp = payload.get("exp")
-        print(expires_timestamp)
         expires = datetime.utcfromtimestamp(expires_timestamp)
-        print(expires_timestamp)
         if expires < datetime.utcnow():
             raise HTTPException(
                 status_code=status.HTTP_401_UNAUTHORIZED, detail="Token has expired"
@@ -67,6 +65,7 @@ async def get_current_user(
                 detail="Could not validate credentials",
             )
         user = await get_user_by_username(username, db)
+        print(user)
         if user is None:
             raise HTTPException(
                 status_code=status.HTTP_401_UNAUTHORIZED, detail="User not found"
