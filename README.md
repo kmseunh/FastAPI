@@ -129,3 +129,12 @@
 > **회원 가입** 및 **로그인(Auth)** 함수 및 라우터 생성
 >
 > [Instagram Backend Clone Coding 1](https://github.com/kmseunh/FastAPI/blob/main/study-logs/2024-04-05-fastapi.md)
+
+<br>
+
+2023.04.06
+> Instagram Backend 클론코딩 2
+>
+> 게시물 **CRUD** 함수 및 라우터 생성
+>
+> [Instagram Backend Clone Coding 2](https://github.com/kmseunh/FastAPI/blob/main/study-logs/2024-04-06-fastapi.md)
