@@ -9,6 +9,7 @@ from app.post.service import (
     create_post_svc,
     delete_post_svc,
     get_post_from_post_id_svc,
+    get_posts_by_username,
     get_posts_from_hashtag_svc,
     get_random_posts_svc,
     get_users_posts_svc,
@@ -47,11 +48,10 @@ async def get_current_user_posts(token: str, db: Session = Depends(get_db)):
 
 
 @router.get("/user/{username}", response_model=list[Post])
-async def get_user_posts(username: str, token: str, db: Session = Depends(get_db)):
+async def get_user_posts(username: str, db: Session = Depends(get_db)):
     user_exists = await existing_user(username, "", db)
     if user_exists:
-        user = await get_current_user(token, db)
-        user_posts = await get_users_posts_svc(user.id, db)
+        user_posts = await get_posts_by_username(username, db)
         return user_posts
     else:
         return []
