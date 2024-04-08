@@ -4,6 +4,7 @@ from typing import List
 from sqlalchemy import desc
 from sqlalchemy.orm import Session
 
+from app.activity.models import Activity
 from app.auth.models import User
 from app.post.models import Hashtag, Post, post_hashtags
 from app.post.schemas import Post as PostSchema
@@ -117,6 +118,15 @@ async def like_post_svc(post_id: int, username: str, db: Session):
 
     post.like_by_users.append(user)
     post.likes_count = len(post.like_by_users)
+
+    like_activity = Activity(
+        username=post.author.username,
+        liked_post_id=post_id,
+        username_like=username,
+        liked_post_image=post.image,
+    )
+
+    db.add(like_activity)
 
     db.commit()
     return True, "done"
