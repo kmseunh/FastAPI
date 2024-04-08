@@ -119,24 +119,3 @@ async def get_followings_svc(db: Session, user_id: int) -> list[FollowingList]:
         )
 
     return FollowingList(followings=following)
-
-
-async def check_follow_svc(db: Session, current_user: str, user: str):
-    db_follower_exist = existing_user(current_user, "", db)
-    db_following_exist = existing_user(user, "", db)
-
-    if not db_follower_exist or not db_following_exist:
-        return False
-
-    db_follower = get_user_by_username(current_user, db)
-    db_following = get_user_by_username(user, db)
-
-    db_following = (
-        db.query(Follow)
-        .filter_by(follower_id=db_follower.id, following_id=db_following.id)
-        .first()
-    )
-
-    if db_following:
-        return True
-    return False
