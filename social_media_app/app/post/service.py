@@ -1,25 +1,20 @@
 import re
 from typing import List
 
-from fastapi import Depends
 from sqlalchemy import desc
 from sqlalchemy.orm import Session
 
 from app.auth.models import User
-from app.core.db import get_db
-from app.post.models import Post, post_hashtags
-from app.post.schemas import Hashtag
+from app.post.models import Hashtag, Post, post_hashtags
 from app.post.schemas import Post as PostSchema
 from app.post.schemas import PostCreate
 
 
-async def get_posts_by_username(
-    username: str, db: Session = Depends(get_db)
-) -> List[Post]:
+async def get_posts_by_username(username: str, db: Session) -> List[Post]:
     return db.query(Post).filter(Post.author.has(username=username)).all()
 
 
-async def create_hashtags_svc(post: Post, db: Session = Depends(get_db)):
+async def create_hashtags_svc(post: Post, db: Session):
     regex = r"#\w+"
     matches = re.findall(regex, post.content)
 
@@ -31,14 +26,12 @@ async def create_hashtags_svc(post: Post, db: Session = Depends(get_db)):
             hashtag = Hashtag(name=name)
             db.add(hashtag)
             db.commit()
-        post.hashtags.appends(hashtag)
+        post.hashtags.append(hashtag)
 
     db.commit()
 
 
-async def create_post_svc(
-    post: PostCreate, user_id: int, db: Session = Depends(get_db)
-):
+async def create_post_svc(post: PostCreate, user_id: int, db: Session):
     db_post = Post(
         content=post.content,
         image=post.image,
@@ -55,9 +48,7 @@ async def create_post_svc(
     return db_post
 
 
-async def get_users_posts_svc(
-    user_id: int, db: Session = Depends(get_db)
-) -> list[PostSchema]:
+async def get_users_posts_svc(user_id: int, db: Session) -> list[PostSchema]:
     posts = (
         db.query(Post)
         .filter(Post.author_id == user_id)
@@ -68,15 +59,15 @@ async def get_users_posts_svc(
     return posts
 
 
-async def get_posts_from_hashtag_svc(hashtag_name: str, db: Session = Depends(get_db)):
-    hashtag = db.query(Hashtag).filter_by(name=hashtag_name).first()
+async def get_posts_from_hashtag_svc(hashtag_name: str, db: Session):
+    hashtag = db.query(Hashtag).filter(Hashtag.name == hashtag_name).first()
     if not hashtag:
         return None
     return hashtag.posts
 
 
 async def get_random_posts_svc(
-    page: int = 1, limit: int = 10, hashtag: str = None, db: Session = Depends(get_db)
+    db: Session, page: int = 1, limit: int = 10, hashtag: str = None
 ):
     total_posts = db.query(Post).count()
 
@@ -84,7 +75,7 @@ async def get_random_posts_svc(
     if offset >= total_posts:
         return []
 
-    posts = db.query(Post, User.username).join(User).order_by(desc(Post.created_at))
+    posts = db.query(Post, User.username).join(User).order_by(desc(Post.created_dt))
 
     if hashtag:
         posts = posts.join(post_hashtags).join(Hashtag).filter(Hashtag.name == hashtag)
@@ -100,19 +91,17 @@ async def get_random_posts_svc(
     return result
 
 
-async def get_post_from_post_id_svc(
-    post_id: int, db: Session = Depends(get_db)
-) -> PostSchema:
+async def get_post_from_post_id_svc(post_id: int, db: Session) -> PostSchema:
     return db.query(Post).filter(Post.id == post_id).first()
 
 
-async def delete_post_svc(post_id: int, db: Session = Depends(get_db)):
+async def delete_post_svc(post_id: int, db: Session):
     post = await get_post_from_post_id_svc(post_id, db)
     db.delete(post)
     db.commit()
 
 
-async def likes_post_svc(post_id: int, username: str, db: Session = Depends(get_db)):
+async def like_post_svc(post_id: int, username: str, db: Session):
     post = await get_post_from_post_id_svc(post_id, db)
 
     if not post:
@@ -123,17 +112,18 @@ async def likes_post_svc(post_id: int, username: str, db: Session = Depends(get_
     if not user:
         return False, "Invalid username"
 
-    if user in post.liked_by_users:
+    if user in post.like_by_users:
         return False, "Already Liked"
 
-    post.liked_by_users.append(user)
-    post.likes_count = len(post.likes_by_users)
+    post.like_by_users.append(user)
+    post.likes_count = len(post.like_by_users)
 
     db.commit()
+    return True, "done"
 
 
-async def unlikes_post_svc(post_id: int, username: str, db: Session = Depends(get_db)):
-    post = await get_post_from_post_id_svc(db, post_id)
+async def unlike_post_svc(post_id: int, username: str, db: Session):
+    post = await get_post_from_post_id_svc(post_id, db)
 
     if not post:
         return False, "Invalid post_id"
@@ -143,17 +133,19 @@ async def unlikes_post_svc(post_id: int, username: str, db: Session = Depends(ge
     if not user:
         return False, "Invalid username"
 
-    if user in post.liked_by_users:
-        return False, "Already Liked"
+    if not user in post.like_by_users:
+        return False, "Already Not Liked"
 
-    post.liked_by_users.remove(user)
-    post.likes_count = len(post.likes_by_users)
+    post.like_by_users.remove(user)
+    post.likes_count = len(post.like_by_users)
 
     db.commit()
 
 
-async def liked_users_post_svc(
-    post_id: int, db: Session = Depends(get_db)
-) -> List[User]:
+async def liked_users_post_svc(post_id: int, db: Session) -> List[User]:
     post = await get_post_from_post_id_svc(post_id, db)
-    return post.liked_by_users
+
+    if not post:
+        return []
+    liked_users = post.like_by_users
+    return liked_users
