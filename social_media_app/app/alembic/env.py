@@ -3,6 +3,7 @@ from logging.config import fileConfig
 from alembic import context
 from sqlalchemy import engine_from_config, pool
 
+from app.activity.models import Base as ActivityBase
 from app.auth.models import Base as AuthBase
 from app.core.config import settings
 from app.post.models import Base as PostBase
@@ -28,6 +29,7 @@ if config.config_file_name is not None:
 # target_metadata = mymodel.Base.metadata
 target_metadata = AuthBase.metadata
 target_metadata = PostBase.metadata
+target_metadata = ActivityBase.metadata
 
 # other values from the config, defined by the needs of env.py,
 # can be acquired:
