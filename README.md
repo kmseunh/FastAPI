@@ -146,4 +146,4 @@
 >
 > 사용자의 활동 조회, 프로필 조회, 팔로우, 팔로잉 함수 및 라우터 생성
 >
-> [Instagram Backend Clone Coding 2](https://github.com/kmseunh/FastAPI/blob/main/study-logs/2024-04-08-fastapi.md)
+> [Instagram Backend Clone Coding 3](https://github.com/kmseunh/FastAPI/blob/main/study-logs/2024-04-08-fastapi.md)
