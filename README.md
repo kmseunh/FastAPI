@@ -147,3 +147,10 @@
 > 사용자의 활동 조회, 프로필 조회, 팔로우, 팔로잉 함수 및 라우터 생성
 >
 > [Instagram Backend Clone Coding 3](https://github.com/kmseunh/FastAPI/blob/main/study-logs/2024-04-08-fastapi.md)
+
+<br>
+
+2023.04.10
+> 파일 업로드, 이메일 전송 서비스
+>
+> [File Upload, Send Email Service](https://github.com/kmseunh/FastAPI/blob/main/study-logs/2024-04-10-fastapi.md)
