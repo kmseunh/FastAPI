@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "send-mail"
+version = "0.1.0"
+description = ""
+authors = ["kmseunh <tmdgus8779@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+fastapi = "^0.110.1"
+uvicorn = "^0.29.0"
+fastapi-mail = "^1.4.1"
+pydantic-settings = "^2.2.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
